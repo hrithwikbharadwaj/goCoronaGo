@@ -1,4 +1,12 @@
 
+
+{% extends 'base.html' %}
+
+{% block title %}PWA{% endblock %}
+
+{% block body_content %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,14 +18,13 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-    <link href="/static/manifest.json" rel="manifest">
+    <!-- <link href="/static/manifest.json" rel="manifest"> -->
 
       <!-- Favicons -->
-      <link href="static/images/favicon.ico" rel="icon">
-      <link href="static/images/apple-touch-icon.png" rel="apple-touch-icon">
+    
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <!-- <title>Dashboard</title> -->
 
     <!-- Fontfaces CSS-->
     <link href="/static/css/font-face.css" rel="stylesheet" media="all">
@@ -25,20 +32,12 @@
     <link href="/static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-    <script src="{{ url_for('static', filename='sw.js') }}"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-      <script src="{{ url_for('static', filename='js/framework7.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/framework7.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/framework7.min.js.map') }}"></script>
-      <script src="{{ url_for('static', filename='js/framework7.bundle.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/framework7.bundle.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/install.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/f7_setup.js') }}"></script>
-      {% block scripts %}{% endblock %}
+    
+     
 
     <!-- Bootstrap CSS-->
     <link href="/static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 
     <!-- Vendor CSS-->
@@ -49,7 +48,7 @@
     <link href="/static/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
@@ -304,8 +303,7 @@
                                                         confirmArray.push([stateData.totalconfirmed])
                                             
                                                     })
-                                                    console.log(dateArray)
-                                                    console.log(confirmArray)
+                                                   
                                                     for (var i=5;i<30;i++){
                                                             delete dateArray[i];
                                                             delete confirmArray[i];
@@ -313,7 +311,7 @@
                                                         }
                                                         const newDate =  dateArray.filter(el => el !== undefined);
                                                         const newConfirmed =  confirmArray.filter(el => el !== undefined);
-                                                        console.log(newDate)
+                                                       
                                                     var ctx = document.getElementById('myChart3').getContext('2d');
                                                     
                                                     var stackedLine = new Chart(ctx, {
@@ -387,4 +385,14 @@
     
 </body>
 
+
 </html>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+

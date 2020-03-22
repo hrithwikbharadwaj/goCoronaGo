@@ -1,9 +1,12 @@
 import requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, url_for, redirect, request, session, flash
+from gevent.pywsgi import WSGIServer
+from flask_compress import Compress
 # from flask_sqlalchemy import SQLAlchemy 
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
+Compress(app)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///weather.db'
 
 @app.route('/', methods=['GET', 'POST'])
