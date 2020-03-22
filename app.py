@@ -32,6 +32,10 @@ def not_found(e):
 def sw():
     return app.send_static_file('sw.js')
     
+@app.route('/manifest.json')
+def manifest():
+    return app.send_static_file('manifest.json')
+    
 if __name__ == "__main__":
     # Development
     app.run(threaded=True, debug=True)
