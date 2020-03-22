@@ -22,13 +22,16 @@ def index():
     percentDeath=int((deaths/cases)*100)
     percentRecovered=int((recovered/cases)*100)
     return render_template('index.html',country=country,cases=cases,deaths=deaths,todayDeaths=todayDeaths,recovered=recovered,active=activeCases,perDeath=percentDeath,todayCases=todayCases)
-   
 
-        
+@app.errorhandler(404)
+def not_found(e):
+  return render_template("404.html"), 404
 
 
+@app.route('/sw.js', methods=['GET'])
+def sw():
+    return app.send_static_file('sw.js')
     
-
 if __name__ == "__main__":
     # Development
     app.run(threaded=True, debug=True)
