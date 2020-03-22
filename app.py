@@ -22,11 +22,18 @@ def index():
     percentDeath=int((deaths/cases)*100)
     percentRecovered=int((recovered/cases)*100)
     return render_template('index.html',country=country,cases=cases,deaths=deaths,todayDeaths=todayDeaths,recovered=recovered,active=activeCases,perDeath=percentDeath,todayCases=todayCases)
-   
+
 
         
 
+@app.route('/sw.js', methods=['GET'])
+def sw():
+    return app.send_static_file('sw.js')
 
+
+@app.route('/manifest.json')
+def manifest():
+    return app.send_static_file('manifest.json')
     
 
 if __name__ == "__main__":
