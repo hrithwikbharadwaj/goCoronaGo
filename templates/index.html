@@ -263,14 +263,32 @@
                             <div class="col-lg-6">
                                 <div class="au-card recent-report">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2">State Wise Report</h3>
+                                        <h3 class="title-2">State Wise </h3>
                                         <div class="chart-info">
                                             
                                            
                                         </div>
                                         <div class="recent-report__chart">
                                             <div>
-                                                <canvas id="myChart2" width="40" height="40"></canvas>
+                                                <canvas id="myChart2" width="20%" height="30%"></canvas>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2">Cumulative Trend</h3>
+                                        <div class="chart-info">
+                                            
+                                           
+                                        </div>
+                                        <div class="recent-report__chart">
+                                            <div>
+                                                <canvas id="myChart3" width="20%" height="10%"></canvas>
                                             </div>
                                             
                                         </div>
@@ -278,61 +296,9 @@
                                 </div>
                             </div>
                            
-                            <div class="col-lg-6">
-                                <div class="au-card chart-percent-card">
-                                    <div class="au-card-inner">
-                                        <h3 >Cumulative trend</h3>
-                                        
-                                            <div class="col-xl-6">
-                                                <div>
-                                                    <canvas id="myChart3" width="110" height="80"></canvas>
-                                                </div>
+                           
                                                 <script>
-                                                    let dateArray=[]
-                                                    let confirmArray=[]
-                                                $.getJSON("https://api.covid19india.org/data.json",
-                                                function(result) {
-                                                    
-                                                    var dat;
-                                                    // let arr=[]
-                                                    dat=result.cases_time_series;
                                                    
-                                                    
-                                                    dat.forEach((stateData) => {    
-                                                        dateArray.push([stateData.date])
-                                                        confirmArray.push([stateData.totalconfirmed])
-                                            
-                                                    })
-                                                   
-                                                    for (var i=5;i<30;i++){
-                                                            delete dateArray[i];
-                                                            delete confirmArray[i];
-                                                           
-                                                        }
-                                                        const newDate =  dateArray.filter(el => el !== undefined);
-                                                        const newConfirmed =  confirmArray.filter(el => el !== undefined);
-                                                       
-                                                    var ctx = document.getElementById('myChart3').getContext('2d');
-                                                    
-                                                    var stackedLine = new Chart(ctx, {
-                                                // The type of chart we want to create
-                                                type: 'line',
-                                                
-                                                // The data for our dataset
-                                                data: {
-                                                    labels: newDate,
-                                                    datasets: [{
-                                                        label: '30th January to Today',
-                                                        
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        data: newConfirmed
-                                                    }]
-                                                },
-                                            
-                                                // Configuration options go here
-                                                options: {}
-                                            });
-                                                });
                                             </script>
                                             </div>
                                         </div>

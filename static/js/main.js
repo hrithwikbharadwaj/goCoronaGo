@@ -1,3 +1,50 @@
+let dateArray=[]
+let confirmArray=[]
+$.getJSON("https://api.covid19india.org/data.json",
+function(result) {
+
+var dat;
+// let arr=[]
+dat=result.cases_time_series;
+
+
+dat.forEach((stateData) => {    
+    dateArray.push([stateData.date])
+    confirmArray.push([stateData.totalconfirmed])
+
+})
+
+for (var i=5;i<30;i++){
+        delete dateArray[i];
+        delete confirmArray[i];
+       
+    }
+    const newDate =  dateArray.filter(el => el !== undefined);
+    const newConfirmed =  confirmArray.filter(el => el !== undefined);
+   
+var ctx = document.getElementById('myChart3').getContext('2d');
+
+var stackedLine = new Chart(ctx, {
+// The type of chart we want to create
+type: 'line',
+
+// The data for our dataset
+data: {
+labels: newDate,
+datasets: [{
+    label: '30th January to Today',
+    
+    borderColor: 'rgb(255, 99, 132)',
+    data: newConfirmed
+}]
+},
+
+// Configuration options go here
+options: {}
+});
+});
+
+
 function getRandomColor() {
   var letters = '0123456789ABCDEF';
   var color = '#';
@@ -33,6 +80,9 @@ $.getJSON("https://api.covid19india.org/data.json",
           delete activeArray[i];
           delete colorArray[i];
       }
+      delete stateArray[0];
+      delete activeArray[0];
+      delete colorArray[0];
       
       const newstate =  stateArray.filter(el => el !== undefined);
       const newActive =  activeArray.filter(el => el !== undefined);
@@ -48,18 +98,22 @@ type: 'horizontalBar',
 data: {
   labels: newstate,
   datasets: [{
-      label: 'Total Active Cases ',
+      label: 'Active Cases across the Country',
       backgroundColor: newColor,
-      borderColor: 'rgb(255, 99, 132)',
+      
       data: newActive
   }]
 },
 
 // Configuration options go here
-options: {}
+options: {maintainAspectRatio: true,
+  legend: {
+    display: false
+  },}
 });
    
     });
+
 
 (function ($) {
   // USE STRICT
