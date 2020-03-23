@@ -22,7 +22,15 @@ for (var i=5;i<30;i++){
     
     const newDate =  dateArray.filter(el => el !== undefined);
     const newConfirmed =  confirmArray.filter(el => el !== undefined);
-    console.log(newConfirmed);
+    if(newConfirmed[newConfirmed.length-1] == ''){
+    delete newConfirmed[newConfirmed.length-1];
+    delete newDate[newConfirmed.length-1];
+    
+    }
+    if(newConfirmed[newConfirmed.length-1] == ''){
+      console.log('shit')
+    }
+
     console.log(newDate);
    
 var ctx = document.getElementById('myChart3').getContext('2d');
