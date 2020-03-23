@@ -11,20 +11,20 @@ Compress(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    url = 'https://corona.lmao.ninja/countries/india'
+    url = 'https://api.covid19india.org/data.json'
     r = requests.get(url).json()
-    raju=[]
-    raju=r
-    country=raju['country']
-    cases=raju['cases']
+    cases=r['statewise']
+    list1=cases[0]
+    raju=list1
+    
+    cases=raju['confirmed']
     deaths=raju['deaths']
-    todayDeaths=raju['todayDeaths']
-    todayCases=raju['todayCases']
+    
     recovered=raju['recovered']
     activeCases=raju['active']
-    percentDeath=int((deaths/cases)*100)
-    percentRecovered=int((recovered/cases)*100)
-    return render_template('index.html',country=country,cases=cases,deaths=deaths,todayDeaths=todayDeaths,recovered=recovered,active=activeCases,perDeath=percentDeath,todayCases=todayCases)
+    latest=raju['lastupdatedtime']
+    
+    return render_template('index.html',cases=cases,deaths=deaths,recovered=recovered,active=activeCases,latest=latest)
 
 @app.errorhandler(404)
 def not_found(e):
@@ -41,7 +41,7 @@ def manifest():
     
 if __name__ == "__main__":
     # Development
-    # app.run(threaded=True, debug=True)
-    http_server = WSGIServer(('', 8080), app)
-    http_server.serve_forever()
+    app.run(threaded=True, debug=True)
+    # http_server = WSGIServer(('', 8080), app)
+    # http_server.serve_forever()
 

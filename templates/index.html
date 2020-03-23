@@ -15,9 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes, minimal-ui, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
+    
     <!-- <link href="/static/manifest.json" rel="manifest"> -->
 
       <!-- Favicons -->
@@ -181,7 +179,7 @@
                                     </div>
                                 </div>
                                 <br>
-                               <center> <b><p> All the Data here are from trusted crowdsources and are updated every 2 hours.</p></b></center>
+                               <center> <b><p> All the Data here are from trusted crowdsources.Last Updated:{{latest}}</p></b></center>
                                 <br>
                             </div>
                         </div>
@@ -205,19 +203,38 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c2">
+                                <div class="overview-item overview-item--c4">
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>{{recovered}}</h2>
-                                                <span>Recovered Cases</span>
+                                                <h2>{{active}}</h2>
+                                                <span>Active Cases</span>
                                             </div>
                                         </div>
                                         <!-- <div class="overview-chart">
                                             <canvas id="widgetChart2"></canvas>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar-note"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{recovered}}</h2>
+                                                <span>Recovered Cases</span>
+                                            </div>
+                                            
+                                        </div>
+                                        <!-- <div class="overview-chart">
+                                            <canvas id="widgetChart3"></canvas>
                                         </div> -->
                                     </div>
                                 </div>
@@ -240,40 +257,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c3">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-calendar-note"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{{todayCases}}</h2>
-                                                <span>Today's Cases</span>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="overview-chart">
-                                            <canvas id="widgetChart3"></canvas>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c4">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-calendar-note"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{{todayCases}}</h2>
-                                                <span>Todays  Cases</span>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="overview-chart">
-                                            <canvas id="widgetChart4"></canvas>
-                                        </div> -->
-                                    <!-- </div> -->
+                          
                                 </div>
                             </div> 
                         </div>
@@ -306,7 +290,7 @@
                                         </div>
                                         <div class="recent-report__chart">
                                             <div>
-                                                <canvas id="myChart3" width="20%" height="10%"></canvas>
+                                                <canvas id="myChart3" width="110" height="80"></canvas>
                                             </div>
                                             
                                         </div>
@@ -330,7 +314,7 @@
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p>We stand with everyone fighting on the frontlines</p>
-                                      <p>Developed by Hrithwik with the help of <a href="https://bit.ly/patientdb">Crowd sourced Database</a> and blaze_2305 .also <a href="https://instagram.com/thiru.jpg">Follow @thiru.jpg</a>.xD</p>
+                                      <p>Developed by Hrithwik with the help of <a href="https://bit.ly/patientdb">Crowd sourced Database</a> and blaze_2305 </p><p> <a href="https://instagram.com/thiru.jpg">Follow @thiru.jpg</a></p>
                                 </div>
                             </div>
                         </div>
@@ -413,7 +397,7 @@ toggleSwitch.checked = true;
     </script>
 
     <!-- Main JS-->
-    <script src="/static/js/main.js"></script>
+    <script src="/static/js/main.js?n=1"></script>
    
     
 </body>
