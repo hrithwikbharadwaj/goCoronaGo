@@ -326,6 +326,9 @@ options: {maintainAspectRatio: true,
       });
     }
 
+    //Dark mode toggle 
+
+    
 
     //WidgetChart 4
     var ctx = document.getElementById("widgetChart4");

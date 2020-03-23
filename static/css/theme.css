@@ -48,6 +48,83 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
     box-sizing: border-box;
 }
 
+/*Simple css to style it like a toggle switch*/
+
+:root {
+    --primary-color: #302AE6;
+    --secondary-color: #536390;
+    --font-color: #424242;
+    --bg-color: #fff;
+    --heading-color: #292922;
+}
+
+[data-theme="dark"] {
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+  
+    em {
+      margin-left: 10px;
+      font-size: 1rem;
+    }
+  }
+  .theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+  }
+  
+  .theme-switch input {
+    display:none;
+  }
+  
+  .slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+  }
+  
+  input:checked + .slider {
+    background-color: #66bb6a;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  
 ul {
     margin: 0;
 }
@@ -103,7 +180,9 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 1.625;
-    color: #666;
+    
+    background-color: var(--bg-color);
+    color: var(--font-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -114,7 +193,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: #333333;
+    color: var(--secondary-color);
     font-weight: 700;
     margin: 0;
     line-height: 1.2;
@@ -275,7 +354,7 @@ section {
 /*Page Objects*/
 .page-wrapper {
     overflow: hidden;
-    background: #e5e5e5;
+    background-color: var(--bg-color);
     padding-bottom: 8vh;
 }
 
@@ -283,6 +362,7 @@ section {
     .page-wrapper {
     overflow: auto;
     background: #e5e5e5;
+    background-color: var(--bg-color);
     padding-bottom: 12vh;
 }
 }
@@ -318,6 +398,7 @@ section {
 .main-content {
     padding-top: 116px;
     min-height: 100vh;
+    background-color: var(--bg-color);
 }
 
 @media (max-width: 991px) {
@@ -2719,6 +2800,7 @@ section {
 @media (max-width: 1570px) and (min-width: 992px) {
     .header__navbar ul li a {
         padding: 25px 15px;
+        color: var(--primary-color);
     }
 }
 

@@ -86,12 +86,17 @@
             <div class="header">
                 <a href="#default" class="logo">COVID-19 INDIA</a>
                 <!-- <div class="header-right">
-                  <a class="active" href="#home">Home</a>
-                  <a href="#contact">Contact</a>
-                  <a href="#about">About</a>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider round"></div>
+                      </label>
+                      Enable Dark Mode!
+                    </div>
+                    
                 </div> -->
               </div>
-                
+               
                 <style>
                     * {box-sizing: border-box;}
                     
@@ -152,13 +157,26 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-            
+           
+
+           
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="overview-wrap">
+                                    <div class="header-right">
+                                        <div class="theme-switch-wrapper">
+                                            <label class="theme-switch" for="checkbox">
+                                                <input type="checkbox" id="checkbox" />
+                                                <div class="slider round"></div>
+                                          </label>
+                                         <h5> Enable Dark Mode! </h5>
+                                        </div>
+                                        
+                                    </div>
+
                                     <h2 class="title-1">Corona Outbreak in India</h2>
                                
                                 </div>
@@ -307,13 +325,11 @@
                             </div>
                         </div>
                       
-                        <footer>
-                            <button id="btnAdd"  class="blockraju">Install App</button>
-                          </footer>
+                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
-                                    <p>Developed by Hrithwik Bharadwaj. <a href="https://instagram.com/thiru.jpg">Follow @thiru.jpg</a>.</p>
+                                    <p>Developed by Hrithwik Bharadwaj.ShoutOut to Blaze2305 <a href="https://instagram.com/thiru.jpg">Follow @thiru.jpg</a>.</p>
                                 </div>
                             </div>
                         </div>
@@ -337,6 +353,43 @@
   text-align: center;
 }
 </style>
+
+<script>
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+
+function switchTheme(e) {
+if (e.target.checked) {
+document.documentElement.setAttribute('data-theme', 'dark');
+}
+else {
+document.documentElement.setAttribute('data-theme', 'light');
+}    
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+
+function switchTheme(e) {
+if (e.target.checked) {
+document.documentElement.setAttribute('data-theme', 'dark');
+localStorage.setItem('theme', 'dark'); //add this
+}
+else {
+document.documentElement.setAttribute('data-theme', 'light');
+localStorage.setItem('theme', 'light'); //add this
+}    
+}
+
+
+const currentTheme = localStorage.getItem('theme') || null;
+
+if (currentTheme) {
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+if (currentTheme === 'dark') {
+toggleSwitch.checked = true;
+}
+}
+</script>
     <!-- Jquery JS-->
     <script src="/static/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
