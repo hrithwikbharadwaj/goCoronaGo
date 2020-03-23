@@ -19,8 +19,11 @@ for (var i=5;i<30;i++){
         delete confirmArray[i];
        
     }
+    
     const newDate =  dateArray.filter(el => el !== undefined);
     const newConfirmed =  confirmArray.filter(el => el !== undefined);
+    console.log(newConfirmed);
+    console.log(newDate);
    
 var ctx = document.getElementById('myChart3').getContext('2d');
 
@@ -84,9 +87,14 @@ $.getJSON("https://api.covid19india.org/data.json",
       delete activeArray[0];
       delete colorArray[0];
       
+      
+      
       const newstate =  stateArray.filter(el => el !== undefined);
       const newActive =  activeArray.filter(el => el !== undefined);
       const newColor=  colorArray.filter(el => el !== undefined);
+      
+
+      
      
     var ctx = document.getElementById('myChart2').getContext('2d');
   

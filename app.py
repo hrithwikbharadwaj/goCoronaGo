@@ -31,9 +31,9 @@ def not_found(e):
   return render_template("404.html"), 404
 
 
-@app.route('/sw.js', methods=['GET'])
-def sw():
-    return app.send_static_file('sw.js')
+# @app.route('/sw.js', methods=['GET'])
+# def sw():
+#     return app.send_static_file('sw.js')
     
 @app.route('/manifest.json')
 def manifest():
@@ -41,5 +41,7 @@ def manifest():
     
 if __name__ == "__main__":
     # Development
-    app.run(threaded=True, debug=True)
+    # app.run(threaded=True, debug=True)
+    http_server = WSGIServer(('', 8080), app)
+    http_server.serve_forever()
 
