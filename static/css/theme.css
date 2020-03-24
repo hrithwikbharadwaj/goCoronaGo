@@ -66,7 +66,11 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
     --heading-color: #818cab;
 }
 
-  
+.writing{
+    color: #000000;
+    font-family:'Franklin Gothic Medium' ;
+    letter-spacing: 2px;
+  }
   
   
 ul {
