@@ -323,8 +323,20 @@
     th{ 
         color:#fff;
             }
+
+            #myInput {
+  background-image: url('https://img.icons8.com/metro/26/000000/search.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>
 <h2 class="title-1 m-b-25">District Wise Report</h2>
+<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search for your District" title="Type in a name">
                                     <div style="overflow-x:auto;">
                                        
                                         <table class="table table-striped">
@@ -396,6 +408,27 @@
                                             
                                         
                                         </script>
+
+                                    <script>
+                                        function searchTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+                                    </script>
                         
                         <div class="row">
                             <div class="col-md-12">
