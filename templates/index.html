@@ -104,6 +104,7 @@
                     
                 </div> -->
               </div>
+              
               <!-- <div class="writing" >
                 <center><p style="background-color: rgba(255, 255, 255, 0.75);"><marquee scrollamount="4"> FLASH NEWS: India LockDown for 21 Days.
                 Stay at home! aka Unofficial BigBOSS. <br> </marquee></p></center>
@@ -307,16 +308,94 @@
                             </div>
                            
                            
-                                                <script>
-                                                   
-                                            </script>
+                                               
+ 
+                                           
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                      
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    th{ 
+        color:#fff;
+            }
+</style>
+<h2 class="title-1 m-b-25">District Wise Report</h2>
+                                    <div style="overflow-x:auto;">
+                                       
+                                        <table class="table table-striped">
+                                            <tr  class="bg-info">
+                                                            <th>District</th>
+                                                            <th>Infected</th>
+                                                            <th>State</th>
+                                                            <th>Dead</th>
+                                                            
+                                                            
+                                                            
+                                                        </tr>
+                                                 
+                                                    <tbody id="myTable">
+        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                
+                        
+                                        <script>
+	
+	
+                                            // buildTable(myArray)
+                                        
+                                        
+                                            $.getJSON("https://v1.api.covindia.com/district-values", function (result) {
+                                                
+                                                
+                                                var stateName = []
+                                                for (var k in result) {
+                                                  stateName.push(k)
+                                                var myArray= []
+                                                  
+                                        }
+                                        console.log(stateName)
+                                        for (var rr in stateName){
+                                          var name=stateName[rr]
+                                          // console.log(result[name])
+                                          myArray.push(result[name])
+                                          
+                                        }
+                                        console.log(myArray)
+                                        data=[]
+                                                
+                                                data=myArray
+                                                console.log(myArray)
+                                                var table = document.getElementById('myTable')
+                                        
+                                                for (var i = 0; i < data.length; i++){
+                                                    var row = `<tr>
+                                                                    <td>${stateName[i]}</td>
+                                                                    <td>${data[i].infected}</td>
+                                                                   
+                                                                    <td>${data[i].state}</td>
+                                                                    <td>${data[i].dead}</td>
+                                                                   
+                                                              </tr>`
+                                                    table.innerHTML += row
+                                        
+                                        
+                                                }
+                                        
+                                        // console.log(result.Agra.dead)
+                                              });
+                                            
+                                                
+                                            
+                                        
+                                        </script>
                         
                         <div class="row">
                             <div class="col-md-12">
