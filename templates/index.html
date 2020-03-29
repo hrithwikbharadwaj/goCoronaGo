@@ -342,7 +342,7 @@ h2.title-1:nth-child(3) {
   color: White;
 }
 </style>
-<!-- <h2 class="title-1 m-b-25">District Wise Report</h2>
+<h2 class="title-1 m-b-25">District Wise Report</h2>
 <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search for your District" title="Type in a name">
                                     <div style="overflow-x:auto;">
                                        
@@ -351,7 +351,7 @@ h2.title-1:nth-child(3) {
                                                             <th>District</th>
                                                             <th>Infected</th>
                                                             <th>State</th>
-                                                            <th>Dead</th>
+                                                            
                                                             
                                                             
                                                             
@@ -371,45 +371,75 @@ h2.title-1:nth-child(3) {
                                             // buildTable(myArray)
                                         
                                         
-                                            $.getJSON("https://v1.api.covindia.com/district-values", function (result) {
-                                                
-                                                
-                                                var stateName = []
-                                                for (var k in result) {
-                                                  stateName.push(k)
-                                                var myArray= []
-                                                  
-                                        }
-                                        console.log(stateName)
-                                        for (var rr in stateName){
-                                          var name=stateName[rr]
-                                          // console.log(result[name])
-                                          myArray.push(result[name])
-                                          
-                                        }
-                                        console.log(myArray)
-                                        data=[]
-                                                
-                                                data=myArray
-                                                console.log(myArray)
-                                                var table = document.getElementById('myTable')
-                                        
-                                                for (var i = 0; i < data.length; i++){
-                                                    var row = `<tr>
-                                                                    <td>${stateName[i]}</td>
-                                                                    <td>${data[i].infected}</td>
-                                                                   
-                                                                    <td>${data[i].state}</td>
-                                                                    <td>${data[i].dead}</td>
-                                                                   
-                                                              </tr>`
-                                                    table.innerHTML += row
-                                        
-                                        
+                                            $.getJSON("https://api.covid19india.org/state_district_wise.json", function (result) {
+        
+        
+
+
+
+        console.log(result)
+        var data = {}
+        //dist:{confirmed:__,state:__}
+        for(var state in result){
+          // console.log(state)
+          if(result.hasOwnProperty(state)){
+            for(var dist in result[state].districtData){
+              if(state == "Unknown"){
+                if(dist == "Unknown"){
+                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':"Other"}
+                }
+                else{
+                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':"Other"}
+                }
+              }
+              else{
+                if(dist == "Unknown"){
+                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':state}
+                }
+                else{
+                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':state}
+                }
+              }
+                
+              // console.log(temp)
+            }
+          }
+        }
+        // console.log(data)
+        var stateName = []
+                                                        for (var k in data) {
+                                                          stateName.push(k)
+                                                        var myArray= []
+                                                          
                                                 }
-                                        
-                                        // console.log(result.Agra.dead)
-                                              });
+                                                console.log(stateName)
+                                                for (var rr in stateName){
+                                                  var name=stateName[rr]
+                                                  // console.log(result[name])
+                                                  myArray.push(data[name])
+                                                  
+                                                }
+                                                console.log(myArray)
+                                                data1=myArray
+                                                        console.log(myArray)
+                                                        var table = document.getElementById('myTable')
+                                                
+                                                        for (var i = 0; i < data1.length; i++){
+                                                            var row = `<tr>
+                                                                            <td>${stateName[i]}</td>
+                                                                            <td>${data1[i].confirmed}</td>
+                                                                           
+                                                                            <td>${data1[i].state}</td>
+                                                                            
+                                                                           
+                                                                      </tr>`
+                                                            table.innerHTML += row
+                                                
+                                                
+                                                        }
+        
+        
+              });
                                             
                                                 
                                             
@@ -435,7 +465,7 @@ h2.title-1:nth-child(3) {
     }       
   }
 }
-                                    </script> -->
+                                    </script>
                         
                         <div class="row">
                             <div class="col-md-12">
