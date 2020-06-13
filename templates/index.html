@@ -350,6 +350,7 @@ h2.title-1:nth-child(3) {
                                             <tr  class="bg-info">
                                                             <th>District</th>
                                                             <th>Infected</th>
+                                                            <th>Recovered</th>
                                                             <th>State</th>
                                                             
                                                             
@@ -367,7 +368,16 @@ h2.title-1:nth-child(3) {
                         
                                         <script>
 	
-	
+	if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register("../sw.js", {scope: '/'})
+      .then(registration => {
+        console.log("ServiceWorker running");
+      })
+      .catch(err => {
+         console.log(err);
+      })
+  }
                                             // buildTable(myArray)
                                         
                                         
@@ -377,27 +387,27 @@ h2.title-1:nth-child(3) {
 
 
 
-        console.log(result)
+        // console.log(result)
         var data = {}
         //dist:{confirmed:__,state:__}
         for(var state in result){
           // console.log(state)
           if(result.hasOwnProperty(state)){
             for(var dist in result[state].districtData){
-              if(state == "Unknown"){
-                if(dist == "Unknown"){
-                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':"Other"}
+              if(state == "Unassigned"){
+                if(dist == "Unassigned"){
+                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown'}
                 }
                 else{
-                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':"Other"}
+                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown'}
                 }
               }
               else{
-                if(dist == "Unknown"){
-                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':state}
+                if(dist == "Unassigned"){
+                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':state,'recovered':'Unkown'}
                 }
                 else{
-                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':state}
+                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':state,'recovered':result[state].districtData[dist].recovered}
                 }
               }
                 
@@ -412,23 +422,23 @@ h2.title-1:nth-child(3) {
                                                         var myArray= []
                                                           
                                                 }
-                                                console.log(stateName)
+                                                // console.log(stateName)
                                                 for (var rr in stateName){
                                                   var name=stateName[rr]
                                                   // console.log(result[name])
                                                   myArray.push(data[name])
                                                   
                                                 }
-                                                console.log(myArray)
+                                                // console.log(myArray)
                                                 data1=myArray
                                                         console.log(myArray)
                                                         var table = document.getElementById('myTable')
-                                                
+                                                    console.log(data1)
                                                         for (var i = 0; i < data1.length; i++){
                                                             var row = `<tr>
                                                                             <td>${stateName[i]}</td>
                                                                             <td>${data1[i].confirmed}</td>
-                                                                           
+                                                                            <td>${data1[i].recovered}</td>
                                                                             <td>${data1[i].state}</td>
                                                                             
                                                                            

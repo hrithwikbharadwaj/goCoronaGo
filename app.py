@@ -41,9 +41,9 @@ def not_found(e):
   return render_template("404.html"), 404
 
 
-# @app.route('/sw.js', methods=['GET'])
-# def sw():
-#     return app.send_static_file('sw.js')
+@app.route('/sw.js', methods=['GET'])
+def sw():
+    return app.send_static_file('sw.js')
     
 @app.route('/manifest.json')
 def manifest():
