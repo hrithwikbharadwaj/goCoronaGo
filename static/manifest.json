@@ -1,6 +1,6 @@
 { 
   "name": "Corona Tracker",
-  "short_name": "PWA",
+  "short_name": "Covid Tracker",
   "description": "Track Corona cases in india",
   "icons": [
     {

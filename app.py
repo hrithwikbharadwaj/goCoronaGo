@@ -3,6 +3,7 @@ from flask import Flask, render_template, url_for, redirect, request, session, f
 from gevent.pywsgi import WSGIServer
 from flask_compress import Compress
 from flask_sslify import SSLify
+import json
 # from flask_sqlalchemy import SQLAlchemy 
 
 app = Flask(__name__)
@@ -25,18 +26,18 @@ def index():
     recovered=raju['recovered']
     activeCases=raju['active']
     latest=raju['lastupdatedtime']
-#     url2= 'https://api.covid19india.org/v2/state_district_wise.json'
-#     b = requests.get(url2).json()
-# # print(r)
-#     n=len(r)
-#     dis=[]
-#     others=[]
-# # print(r[0])
-#     for x, y in b.items():
-#         dis.append(x)
-#         others.append(y)
+    url2= 'https://api.covid19india.org/state_district_wise.json'
+    b = requests.get(url2).json()
+# print(r)
+    n=len(r)
+    dis=[]
+    others=[]
+# print(r[0])
+    for x, y in b.items():
+        dis.append(x)
+        others.append(y)
     
-    return render_template('index.html',cases=cases,deaths=deaths,recovered=recovered,active=activeCases,latest=latest)
+    return render_template('index.html',cases=cases,deaths=deaths,recovered=recovered,active=activeCases,latest=latest,others=b,dis=dis)
 
 @app.errorhandler(404)
 def not_found(e):

@@ -34,76 +34,6 @@
 // buildTable(myArray)
 
 
-$.getJSON("https://api.covid19india.org/state_district_wise.json", function (result) {
-
-
-console.log(result);
-
-
-// console.log(result)
-var data = {}
-//dist:{confirmed:__,state:__}
-for(var state in result){
-// console.log(state)
-if(result.hasOwnProperty(state)){
-for(var dist in result[state].districtData){
-if(state == "Unassigned"){
-if(dist == "Unassigned"){
-data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown','Active':'Unkown'}
-}
-else{
-data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown','Active':result[state].districtData[dist].active}
-}
-}
-else{
-if(dist == "Unassigned"){
-data['Other']={"confirmed":result[state].districtData[dist].confirmed,'Unkown':state,'recovered':'Unkown','Active':result[state].districtData[dist].active}
-}
-else{
-data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':state,'recovered':result[state].districtData[dist].recovered,'Active':result[state].districtData[dist].active}
-}
-}
-
-// console.log(temp)
-}
-}
-}
-// console.log(data)
-var stateName = []
-            for (var k in data) {
-              stateName.push(k)
-            var myArray= []
-              
-    }
-    // console.log(stateName)
-    for (var rr in stateName){
-      var name=stateName[rr]
-      // console.log(result[name])
-      myArray.push(data[name])
-      
-    }
-    // console.log(myArray)
-    data1=myArray
-            // console.log(myArray)
-            var table = document.getElementById('myTable')
-        // console.log(data1)
-            for (var i = 0; i < data1.length; i++){
-                var row = `<tr>
-                                <td>${stateName[i]}</td>
-                                <td>${data1[i].confirmed}</td>
-                                <td>${data1[i].Active}</td>
-                                <td>${data1[i].recovered}</td>
-                                <td>${data1[i].state}</td>
-                                
-                               
-                          </tr>`
-                table.innerHTML += row
-    
-    
-            }
-
-
-});
 
     
 
@@ -445,7 +375,196 @@ h2.title-1:nth-child(3) {
   color: White;
 }
 </style>
+<script>
+    console.log("hello")
+    var a="{{others}}";
+    // console.log(a)
+    var dat={}
+    dat='{{others}}'
+//     for (var ele in dat){
+// console.log(ele.confirmed)
+//     }
 
+</script>
+<!-- <h2> {{others}}</h2> -->
+<h2 class="title-1 m-b-25">District Wise Report</h2>
+<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search for your District" title="Type in a name">
+                                    <div style="overflow-x:auto;">
+                                       
+                                        <table class="table table-striped">
+                                            <tr  class="bg-info">
+                                                            <th>District</th>
+                                                            <th>Infected</th>
+                                                            <th>Active Cases</th>
+                                                            <th>Recovered</th>
+                                                            <th>State</th>
+                                                            
+                                                          
+                                                            
+                                                            
+                                                            
+                                                        </tr>
+                                                      
+                                                       
+                                              
+                                                 
+                                                    <tbody id="myTable">
+           
+                                                        {% for item in others %}
+                                                        <!-- <h2> {{others[item]['districtData'] }}</h2> -->
+                                                        
+                                                          
+                                                           {% for dist in others[item].districtData %}
+                                                              <tr>
+                                                                <td>{{dist}}</td>
+                                                                <td>{{others[item].districtData[dist].confirmed}}</td>
+                                                                <td>{{others[item].districtData[dist].active}}</td>
+                                                                <td>{{others[item].districtData[dist].recovered}}</td>
+                                                                <td>{{item}}</td>
+                                                                {% endfor %}
+                                                            </tr>
+                                                       
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                <script>
+                                      function searchTable() {
+                                        //   console.log('coming?')
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+                                </script>
+                        <!-- <h2>{{dis}}</h2> -->
+                        <!-- <h6>{{others}}</h6> -->
+                        <br>
+                        <!-- <h1>{{dis}}</h1> -->
+                        
+                  
+                                    <!-- <script>
+                                        
+                                        
+$.getJSON("", function (result) {
+
+
+
+
+// console.log(result)
+var data = {}
+//dist:{confirmed:__,state:__}
+for(var state in result){
+// console.log(state)
+if(result.hasOwnProperty(state)){
+for(var dist in result[state].districtData){
+if(state == "Unassigned"){
+if(dist == "Unassigned"){
+data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown','Active':'Unkown'}
+}
+else{
+data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown','Active':result[state].districtData[dist].active}
+}
+}
+else{
+if(dist == "Unassigned"){
+data['Other']={"confirmed":result[state].districtData[dist].confirmed,'Unkown':state,'recovered':'Unkown','Active':result[state].districtData[dist].active}
+}
+else{
+data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':state,'recovered':result[state].districtData[dist].recovered,'Active':result[state].districtData[dist].active}
+}
+}
+
+// console.log(temp)
+}
+}
+}
+// console.log(data)
+var stateName = []
+            for (var k in data) {
+              stateName.push(k)
+            var myArray= []
+              
+    }
+    // console.log(stateName)
+    for (var rr in stateName){
+      var name=stateName[rr]
+      // console.log(result[name])
+      myArray.push(data[name])
+      
+    }
+    // console.log(myArray)
+    data1=myArray
+            // console.log(myArray)
+            var table = document.getElementById('myTable')
+        // console.log(data1)
+            for (var i = 0; i < data1.length; i++){
+                var row = `<tr>
+                                <td>${stateName[i]}</td>
+                                <td>${data1[i].confirmed}</td>
+                                <td>${data1[i].Active}</td>
+                                <td>${data1[i].recovered}</td>
+                                <td>${data1[i].state}</td>
+                                
+                               
+                          </tr>`
+                table.innerHTML += row
+    
+    
+            }
+
+
+});
+                                        function searchTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+                                    </script> -->
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>We stand with everyone fighting on the frontlines</p>
+                                    <br>
+                                      <p>Developed by Hrithwik with the help of <a href="https://bit.ly/patientdb">Crowd sourced Database</a> and blaze_2305 </p><p> <a href="https://twitter.com/HSBTechYt">Contact me on twitter</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
 <style>
     .blockraju {
   display: block;

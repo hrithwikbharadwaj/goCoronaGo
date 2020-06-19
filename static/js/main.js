@@ -13,8 +13,7 @@ dat=result.cases_time_series;
 dat.forEach((stateData) => {    
     dateArray.push([stateData.date])
     confirmArray.push([stateData.totalconfirmed])
-    console.log(stateData.totalrecovered)
-    console.log(stateData.totalactive)
+  
     recoverArray.push([stateData.totalrecovered])
     deadArray.push([stateData.totaldeceased])
   
