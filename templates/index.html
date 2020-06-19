@@ -350,6 +350,7 @@ h2.title-1:nth-child(3) {
                                             <tr  class="bg-info">
                                                             <th>District</th>
                                                             <th>Infected</th>
+                                                            <th>Active Cases</th>
                                                             <th>Recovered</th>
                                                             <th>State</th>
                                                             
@@ -396,18 +397,18 @@ h2.title-1:nth-child(3) {
             for(var dist in result[state].districtData){
               if(state == "Unassigned"){
                 if(dist == "Unassigned"){
-                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown'}
+                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown','Active':'Unkown'}
                 }
                 else{
-                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown'}
+                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':"Other",'recovered':'Unkown','Active':result[state].districtData[dist].active}
                 }
               }
               else{
                 if(dist == "Unassigned"){
-                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'state':state,'recovered':'Unkown'}
+                  data['Other']={"confirmed":result[state].districtData[dist].confirmed,'Unkown':state,'recovered':'Unkown','Active':result[state].districtData[dist].active}
                 }
                 else{
-                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':state,'recovered':result[state].districtData[dist].recovered}
+                  data[dist]={"confirmed":result[state].districtData[dist].confirmed,'state':state,'recovered':result[state].districtData[dist].recovered,'Active':result[state].districtData[dist].active}
                 }
               }
                 
@@ -438,6 +439,7 @@ h2.title-1:nth-child(3) {
                                                             var row = `<tr>
                                                                             <td>${stateName[i]}</td>
                                                                             <td>${data1[i].confirmed}</td>
+                                                                            <td>${data1[i].Active}</td>
                                                                             <td>${data1[i].recovered}</td>
                                                                             <td>${data1[i].state}</td>
                                                                             
