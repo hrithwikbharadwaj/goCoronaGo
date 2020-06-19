@@ -11,6 +11,7 @@ dat=result.cases_time_series;
 dat.forEach((stateData) => {    
     dateArray.push([stateData.date])
     confirmArray.push([stateData.totalconfirmed])
+    console.log(stateData.recovered)
 
 })
 
@@ -31,7 +32,7 @@ for (var i=5;i<30;i++){
       console.log('shit')
     }
 
-    console.log(newDate);
+   
    
 var ctx = document.getElementById('myChart3').getContext('2d');
 
@@ -75,6 +76,7 @@ $.getJSON("https://api.covid19india.org/data.json",
       var dat;
       
       dat=result.statewise;
+     
      
       
       dat.forEach((stateData) => {    
