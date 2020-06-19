@@ -1,5 +1,7 @@
 let dateArray=[]
 let confirmArray=[]
+let recoverArray=[]
+let deadArray=[]
 $.getJSON("https://api.covid19india.org/data.json",
 function(result) {
 
@@ -11,50 +13,164 @@ dat=result.cases_time_series;
 dat.forEach((stateData) => {    
     dateArray.push([stateData.date])
     confirmArray.push([stateData.totalconfirmed])
-    console.log(stateData.recovered)
+    console.log(stateData.totalrecovered)
+    console.log(stateData.totalactive)
+    recoverArray.push([stateData.totalrecovered])
+    deadArray.push([stateData.totaldeceased])
+  
 
 })
 
-for (var i=5;i<30;i++){
+for (var i=5;i<80;i++){
         delete dateArray[i];
         delete confirmArray[i];
+        delete recoverArray[i];
+        delete deadArray[i];
        
     }
     
     const newDate =  dateArray.filter(el => el !== undefined);
     const newConfirmed =  confirmArray.filter(el => el !== undefined);
+    const newRecoverd =  recoverArray.filter(el => el !== undefined);
+    const newDead =  deadArray.filter(el => el !== undefined);
     if(newConfirmed[newConfirmed.length-1] == ''){
     delete newConfirmed[newConfirmed.length-1];
     delete newDate[newConfirmed.length-1];
+    delete newRecoverd[newRecoverd.length-1];
+    delete newDead[newDead.length-1];
     
     }
     if(newConfirmed[newConfirmed.length-1] == ''){
       console.log('shit')
     }
-
-   
-   
-var ctx = document.getElementById('myChart3').getContext('2d');
-
-var stackedLine = new Chart(ctx, {
-// The type of chart we want to create
-type: 'line',
-
-// The data for our dataset
-data: {
-labels: newDate,
-datasets: [{
-    label: '30th January to Today',
+    var canvas = document.getElementById("myChart3");
+    var ctx = canvas.getContext('2d');
     
-    borderColor: 'rgb(255, 99, 132)',
-    data: newConfirmed
-}]
-},
+    // Global Options:
+    Chart.defaults.global.defaultFontColor = 'black';
+    Chart.defaults.global.defaultFontSize = 16;
+    
+    var data = {
+      labels: newDate,
+      datasets: [{
+          label: "Confirmed Cases",
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "rgba(225,0,0,0.4)",
+          borderColor: "red", // The main line color
+          borderCapStyle: 'square',
+          borderDash: [], // try [5, 15] for instance
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "black",
+          pointBackgroundColor: "white",
+          pointBorderWidth: 1,
+          pointHoverRadius: 8,
+          pointHoverBackgroundColor: "yellow",
+          pointHoverBorderColor: "brown",
+          pointHoverBorderWidth: 2,
+          pointRadius: 4,
+          pointHitRadius: 10,
+          // notice the gap in the data and the spanGaps: true
+          data: newConfirmed,
+          spanGaps: true,
+        }, {
+          label: "Recovered Cases",
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: "rgba(167,105,0,0.4)",
+          borderColor: "rgb(167, 105, 0)",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "white",
+          pointBackgroundColor: "black",
+          pointBorderWidth: 1,
+          pointHoverRadius: 8,
+          pointHoverBackgroundColor: "brown",
+          pointHoverBorderColor: "yellow",
+          pointHoverBorderWidth: 2,
+          pointRadius: 4,
+          pointHitRadius: 10,
+          // notice the gap in the data and the spanGaps: false
+          data: newRecoverd,
+          spanGaps: false,
+        },
+        {
+          label: "Deceased Cases",
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: "rgba(225,0,0,0.4)",
+          borderColor: "blue",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "black",
+          pointBackgroundColor: "white",
+          pointBorderWidth: 1,
+          pointHoverRadius: 8,
+          pointHoverBackgroundColor: "Black",
+          pointHoverBorderColor: "brown",
+          pointHoverBorderWidth: 2,
+          pointRadius: 4,
+          pointHitRadius: 10,
+          // notice the gap in the data and the spanGaps: false
+          data: newDead,
+          spanGaps: false,
+        }
+    
+    
+      ]
+    };
+    
+    // Notice the scaleLabel at the same level as Ticks
+    var options = {
+      scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    },
+                    scaleLabel: {
+                         display: true,
+                         labelString: 'Cumulative Trend',
+                         fontSize: 20 
+                      }
+                }]            
+            }  
+    };
+    
+    // Chart declaration:
+    var myBarChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
+});
+   
+// var ctx = document.getElementById('myChart3').getContext('2d');
 
-// Configuration options go here
-options: {}
-});
-});
+// var stackedLine = new Chart(ctx, {
+// // The type of chart we want to create
+// type: 'line',
+
+// // The data for our dataset
+// data: {
+// labels: newDate,
+// datasets: [{
+//     label: '30th January to Today',
+    
+//     borderColor: 'rgb(255, 99, 132)',
+//     data: newConfirmed,
+    
+// }]
+// },
+
+// // Configuration options go here
+// options: {}
+// });
+// });
 
 
 function getRandomColor() {
