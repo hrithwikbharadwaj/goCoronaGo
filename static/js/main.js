@@ -100,6 +100,7 @@ for (var i=5;i<80;i++){
           label: "Deceased Cases",
           fill: true,
           lineTension: 0.1,
+          
           backgroundColor: "rgba(225,0,0,0.4)",
           borderColor: "blue",
           borderCapStyle: 'butt',
@@ -126,7 +127,8 @@ for (var i=5;i<80;i++){
     
     // Notice the scaleLabel at the same level as Ticks
     var options = {
-    
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
                 yAxes: [{
                     ticks: {
@@ -138,7 +140,8 @@ for (var i=5;i<80;i++){
                          fontSize: 20 
                       }
                 }]            
-            }  
+            } , 
+       
     };
     
     // Chart declaration:
