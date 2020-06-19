@@ -126,7 +126,7 @@ for (var i=5;i<80;i++){
     
     // Notice the scaleLabel at the same level as Ticks
     var options = {
-      responsive,
+    
       scales: {
                 yAxes: [{
                     ticks: {
