@@ -19,29 +19,50 @@ dat.forEach((stateData) => {
   
 
 })
+let tenthDate=[]
+let tenthConfirmed=[]
+let tenthRecovered=[]
+let tenthDead=[]
 
-for (var i=5;i<80;i++){
-        delete dateArray[i];
-        delete confirmArray[i];
-        delete recoverArray[i];
-        delete deadArray[i];
+for (var i=5;i<dateArray.length;i+=10){
+        // delete dateArray[i];
+        // delete confirmArray[i];
+        // delete recoverArray[i];
+        // delete deadArray[i];
+        tenthDate.push(dateArray[i])
+        tenthConfirmed.push(confirmArray[i])
+        tenthRecovered.push(recoverArray[i])
+        tenthDead.push(deadArray[i])
        
     }
+    tenthDate.push(dateArray[dateArray.length-1])
+    tenthConfirmed.push(confirmArray[dateArray.length-1])
+    tenthRecovered.push(recoverArray[dateArray.length-1])
+    tenthDead.push(deadArray[dateArray.length-1])
+
+
+// for (var i=5;i<80;i++){
+//         delete dateArray[i];
+//         delete confirmArray[i];
+//         delete recoverArray[i];
+//         delete deadArray[i];
+       
+//     }
     
-    const newDate =  dateArray.filter(el => el !== undefined);
-    const newConfirmed =  confirmArray.filter(el => el !== undefined);
-    const newRecoverd =  recoverArray.filter(el => el !== undefined);
-    const newDead =  deadArray.filter(el => el !== undefined);
-    if(newConfirmed[newConfirmed.length-1] == ''){
-    delete newConfirmed[newConfirmed.length-1];
-    delete newDate[newConfirmed.length-1];
-    delete newRecoverd[newRecoverd.length-1];
-    delete newDead[newDead.length-1];
+    // const newDate =  dateArray.filter(el => el !== undefined);
+    // const newConfirmed =  confirmArray.filter(el => el !== undefined);
+    // const newRecoverd =  recoverArray.filter(el => el !== undefined);
+    // const newDead =  deadArray.filter(el => el !== undefined);
+    // if(newConfirmed[newConfirmed.length-1] == ''){
+    // delete newConfirmed[newConfirmed.length-1];
+    // delete newDate[newConfirmed.length-1];
+    // delete newRecoverd[newRecoverd.length-1];
+    // delete newDead[newDead.length-1];
     
-    }
-    if(newConfirmed[newConfirmed.length-1] == ''){
-      console.log('shit')
-    }
+    // }
+    // if(newConfirmed[newConfirmed.length-1] == ''){
+    //   console.log('shit')
+    // }
     var canvas = document.getElementById("myChart3");
     var ctx = canvas.getContext('2d');
     
@@ -50,7 +71,7 @@ for (var i=5;i<80;i++){
     Chart.defaults.global.defaultFontSize = 16;
     
     var data = {
-      labels: newDate,
+      labels: tenthDate,
       datasets: [{
           label: "Confirmed Cases",
           fill: false,
@@ -71,7 +92,7 @@ for (var i=5;i<80;i++){
           pointRadius: 4,
           pointHitRadius: 10,
           // notice the gap in the data and the spanGaps: true
-          data: newConfirmed,
+          data: tenthConfirmed,
           spanGaps: true,
         }, {
           label: "Recovered Cases",
@@ -93,7 +114,7 @@ for (var i=5;i<80;i++){
           pointRadius: 4,
           pointHitRadius: 10,
           // notice the gap in the data and the spanGaps: false
-          data: newRecoverd,
+          data: tenthRecovered,
           spanGaps: false,
         },
         {
@@ -117,7 +138,7 @@ for (var i=5;i<80;i++){
           pointRadius: 4,
           pointHitRadius: 10,
           // notice the gap in the data and the spanGaps: false
-          data: newDead,
+          data: tenthDead,
           spanGaps: false,
         }
     
