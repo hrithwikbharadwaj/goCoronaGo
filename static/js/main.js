@@ -250,7 +250,7 @@ $.getJSON("https://api.covid19india.org/data.json",
   
   var myBarChart = new Chart(ctx, {
 // The type of chart we want to create
-type: 'horizontalBar',
+type: 'doughnut',
 
 // The data for our dataset
 data: {
@@ -266,7 +266,8 @@ data: {
 // Configuration options go here
 options: {maintainAspectRatio: true,
   legend: {
-    display: false
+    display: true,
+    position:'bottom'
   },},
 
   scales: {
