@@ -266,8 +266,10 @@ data: {
 // Configuration options go here
 options: {maintainAspectRatio: true,
   legend: {
-    display: true,
-    position:'bottom'
+    display: false,
+    responsive:true,
+    maintainAspectRatio:true,
+    position:'top'
   },},
 
   scales: {
