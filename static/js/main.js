@@ -2,7 +2,7 @@ let dateArray=[]
 let confirmArray=[]
 let recoverArray=[]
 let deadArray=[]
-$.getJSON("https://api.covid19india.org/data.json",
+$.getJSON("https://data.covid19india.org/data.json",
 function(result) {
 
 var dat;
@@ -210,7 +210,7 @@ function getRandomColor() {
  let colorArray=[]
  let arry=[]
  let arry2=[]
-$.getJSON("https://api.covid19india.org/data.json",
+$.getJSON("https://data.covid19india.org/data.json",
   function(result) {
       
       var dat;
